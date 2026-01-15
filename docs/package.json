@@ -3,7 +3,7 @@
   "private": false,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://yourusername.github.io/Learn",
+  "homepage": "https://sudhirdeshmukh.github.io/Learn",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
