@@ -1,7 +1,5 @@
 package com.learn.designpatterns.singleton;
 
-import org.springframework.stereotype.Component;
-
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.Map;
 
@@ -28,9 +26,12 @@ import java.util.Map;
  * 2. Minimal synchronization overhead (only during first initialization)
  * 3. Proper memory visibility across threads
  * 
+ * NOTE: This is a pure Java Singleton pattern for educational purposes.
+ * In Spring applications, you would typically use @Component with @Scope("singleton")
+ * instead of manual singleton implementation.
+ * 
  * Real-World Example: Application Configuration Manager
  */
-@Component
 public class ConfigurationManager {
     
     // volatile ensures visibility of changes across threads

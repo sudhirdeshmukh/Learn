@@ -2,8 +2,8 @@ package com.learn.designpatterns.observer;
 
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * Concrete Subject: Newsletter Publisher
@@ -18,12 +18,16 @@ import java.util.List;
  * - Subject doesn't need to know concrete Observer classes
  * - Observers can be added/removed at runtime
  * - Subject and Observers are loosely coupled
+ * 
+ * PERFORMANCE NOTE:
+ * Using LinkedHashSet instead of ArrayList for O(1) contains() and add() operations
+ * while maintaining insertion order.
  */
 @Component
 public class NewsletterPublisher implements Subject {
     
-    // List of all subscribed observers
-    private final List<Observer> observers = new ArrayList<>();
+    // Set of all subscribed observers (LinkedHashSet maintains order + O(1) operations)
+    private final Set<Observer> observers = new LinkedHashSet<>();
     
     // Publisher's state
     private String latestArticle;
@@ -31,11 +35,11 @@ public class NewsletterPublisher implements Subject {
     /**
      * Subscribe an observer
      * Observer will receive all future notifications
+     * Set.add() returns false if observer already exists
      */
     @Override
     public void attach(Observer observer) {
-        if (!observers.contains(observer)) {
-            observers.add(observer);
+        if (observers.add(observer)) {
             System.out.println(observer.getName() + " subscribed to newsletter");
         }
     }
